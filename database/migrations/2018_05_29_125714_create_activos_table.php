@@ -15,7 +15,17 @@ class CreateActivosTable extends Migration
     {
         Schema::create('activos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_tipo')->unsigned();
+            $table->string('nombre',128);
+            
+            $table->string('imagen',128)->nullable();
             $table->timestamps();
+
+            //Relaciones
+            $table->foreign('id_tipo')->references('id')->on('tipo_activos')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
         });
     }
 

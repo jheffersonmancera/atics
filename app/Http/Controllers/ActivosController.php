@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Activo;
 
 class ActivosController extends Controller
 {
@@ -13,7 +14,8 @@ class ActivosController extends Controller
      */
     public function index()
     {
-        //
+        $activos = Activo::orderBy('id')->paginate();
+        return view('admin.index', compact('activos'));
     }
 
     /**
